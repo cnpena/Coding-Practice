@@ -58,6 +58,7 @@ class Test(unittest.TestCase):
         for string in self.data2:
             self.assertFalse(isUnique(string))
             self.assertFalse(isUnique2(string))
+            self.assertTrue(len(set(string)) == len(deleteDuplicates(string)))
 
 if __name__ == "__main__":
     unittest.main()
