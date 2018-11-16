@@ -51,13 +51,16 @@ class Test(unittest.TestCase):
         ('pale', 'ple'),
         ('pales', 'pale'),
         ('pale', 'bale'),
-        ('Longer string?', 'Longer string')]
+        ('Longer string?', 'Longer string'),
+        ('', 'd'),
+        (' ', ' ')]
 
     data2 = [
         ('pale', 'plll'),
         ('pales', 'bale'),
         ('ppple', 'apples'),
-        ('Longer string?', 'Longer')]
+        ('Longer string?', 'Longer'),
+        (' ', 'abc')]
 
     def testPalindrome(self):
         for string in self.data1:
