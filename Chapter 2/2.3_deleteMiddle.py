@@ -24,7 +24,7 @@ class Test(unittest.TestCase):
 
 	testCases = [(1, 6), (2,5), (3,4), (4,3), (5,2), (6,1)]
 
-	def testKth(self):
+	def testDelete(self):
 		for [value, length] in self.testCases:
 			node = self.list1.findNode(value)
 			deleteMiddle(node)
