@@ -8,6 +8,14 @@ class LinkedList:
 		self.head = None
 		self.tail = None
 
+	def __len__(self):
+		length = 0
+		current = self.head
+		while current:
+			length += 1
+			current = current.next
+		return length
+
 	def insert(self, data):
 		if self.head is None:
 			self.tail = self.head = Node(data)
@@ -46,11 +54,3 @@ class LinkedList:
 				return current
 			current = current.next
 		return None
-
-	def length(self):
-		current = self.head
-		length = 0
-		while current:
-			length +=1
-			current = current.next
-		return length
