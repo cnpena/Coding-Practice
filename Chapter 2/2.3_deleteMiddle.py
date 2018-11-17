@@ -29,7 +29,7 @@ class Test(unittest.TestCase):
 			node = self.list1.findNode(value)
 			deleteMiddle(node)
 			self.assertEqual(self.list1.findNode(node), None)
-			self.assertEqual(self.list1.length(), length)
+			self.assertEqual(len(self.list1), length)
 
 if __name__ == "__main__":
 	unittest.main()
