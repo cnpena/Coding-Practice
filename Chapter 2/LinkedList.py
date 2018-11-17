@@ -6,14 +6,26 @@ class Node:
 class LinkedList:
 	def __init__(self):
 		self.head = None
+		self.tail = None
 
 	def insert(self, data):
-		node = Node(data)
-		node.next = self.head
-		self.head = node
+		if self.head is None:
+			self.tail = self.head = Node(data)
+		else:
+			node = Node(data)
+			node.next = self.head
+			self.head = node
+
+	def insertTail(self, data):
+		if self.head is None:
+			self.tail = self.head = Node(data)
+		else:
+			node = Node(data)
+			self.tail.next = node
+			self.tail = node
 
 	def printl(self):
-		current  = self.head
+		current = self.head
 		while current:
 			print(current.data)
 			current = current.next
@@ -27,7 +39,7 @@ class LinkedList:
 			current = current.next
 		return list
 
-	def findNode(self,value):
+	def findNode(self, value):
 		current = self.head
 		while current:
 			if current.data == value:
