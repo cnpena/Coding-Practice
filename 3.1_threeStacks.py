@@ -1,6 +1,8 @@
 #Chapter 3: Stacks and Queues
 #3.1 Three in One, page 98
 #Uses a single array to implement 3 stacks
+#Works by dividing the array in three equal parts 
+#and allowing the individual stack to grow in that limited space. 
 import unittest
 
 class FixedMultiStack:
