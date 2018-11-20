@@ -57,21 +57,31 @@ class FixedMultiStack:
 
 class Test(unittest.TestCase):
 
-	#Pushes a value to each stack
-	def pushToEachStack(self, stack, value):
-		stack.push(0, value)
-		stack.push(1, value)
-		stack.push(2, value)
-
+	#Stacks should be empty when created
 	def test_empty_stack_when_created(self):
-		#Stacks should be empty when created
 		stack = FixedMultiStack(4)
 		self.assertTrue(stack.isEmpty(0))
 		self.assertTrue(stack.isEmpty(1))
 		self.assertTrue(stack.isEmpty(2))
 
+	#Push value to each stack, stacks should no longer be empty
+	def test_non_empty_stack_after_push(self):
+		stack = FixedMultiStack(4)
+		for value in range(2):
+			self.pushToEachStack(stack, value)
+			self.assertFalse(stack.isEmpty(0))
+			self.assertFalse(stack.isEmpty(1))
+			self.assertFalse(stack.isEmpty(2))
+
+	#Push value to stack, pop value from stack. Stack should be empty
+	def test_empty_stack_after_pop(self):
+		stack = FixedMultiStack(4)
+		self.pushToEachStack(stack, 1)
+		stack.pop(0)
+		self.assertTrue(stack.isEmpty(0))
+
 	#Push value to each stack, test peek function
-	def test_peek_with_1_item(self):
+	def test_peek_values(self):
 		stack = FixedMultiStack(4)
 		for value in range(3):
 			self.pushToEachStack(stack, value)
@@ -79,14 +89,15 @@ class Test(unittest.TestCase):
 			self.assertEqual(stack.peek(1), value)
 			self.assertEqual(stack.peek(2), value)
 
-	#Push value to each stack, stacks should no longer be empty
-	def test_non_empty_stack_after_push(self):
+	#Push 3 values to each stack, pop & check values
+	def test_pop_values(self):
 		stack = FixedMultiStack(4)
 		for value in range(3):
 			self.pushToEachStack(stack, value)
-			self.assertFalse(stack.isEmpty(0))
-			self.assertFalse(stack.isEmpty(1))
-			self.assertFalse(stack.isEmpty(2))
+		for value in range(2, 0, -1):
+			self.assertEqual(stack.pop(0), value)
+			self.assertEqual(stack.pop(1), value)
+			self.assertEqual(stack.pop(2), value)
 
 	#Push values to each stack, test stack is not full
 	def test_stack_is_not_full(self):
@@ -105,20 +116,34 @@ class Test(unittest.TestCase):
 		self.assertTrue(stack.isFull(0))
 		self.assertTrue(stack.isFull(1))
 		self.assertTrue(stack.isFull(2))
-		
+
+	#Push to full stack, expects a 'Stack is full' exception
+	def test_push_to_full_stack(self):
+		stack = FixedMultiStack(1)
+		self.pushToEachStack(stack, 1)
 		with self.assertRaises(Exception) as context:
 			stack.push(0, 1)
 		self.assertTrue('Stack is full' in str(context.exception))
 
+	#Pop from empty stack, expects a 'Stack is empty' exception
+	def test_pop_from_empty_stack(self):
+		stack = FixedMultiStack(1)
+		with self.assertRaises(Exception) as context:
+			stack.pop(1)
+		self.assertTrue('Stack is empty' in str(context.exception))
 
-		
+	#Peek from empty stack, expects a 'Stack is empty' exception
+	def test_peek_from_empty_stack(self):
+		stack = FixedMultiStack(1)
+		with self.assertRaises(Exception) as context:
+			stack.peek(1)
+		self.assertTrue('Stack is empty' in str(context.exception))
+
+	#Pushes a value to each stack
+	def pushToEachStack(self, stack, value):
+		stack.push(0, value)
+		stack.push(1, value)
+		stack.push(2, value)
 
 if __name__ == "__main__":
 	unittest.main()
-
-
-# newstack.push(1,2)
-# print (newstack.peek(1))
-# print (newstack.pop(1))
-# print (newstack.peek(1))
-# newstack.push(1,3)
