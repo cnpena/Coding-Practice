@@ -3,6 +3,8 @@
 #Uses a single array to implement 3 stacks
 #Works by dividing the array in three equal parts 
 #and allowing the individual stack to grow in that limited space. 
+#Note: If we had additional information about the expected usages 
+#of the stacks, then we could modify this algo­rithm accordingly.
 import unittest
 
 class FixedMultiStack:
