@@ -11,7 +11,7 @@
 #To fix this we will keep an additional stack which keeps track of the minimums
 import unittest
 
-class MinStack():
+class MinStack:
 
     def __init__(self):
         self.elements = []
