@@ -36,22 +36,29 @@ def isLoop(list):
 	return fast.data
 
 class Test(unittest.TestCase):
-    list1 = LinkedList()
-    list2 = LinkedList()
 
-    list1.insert('d')
-    list1.insert('c')
-    list1.insert('b')
-    list1.insert('a')
-    list1.tail.next = list1.head
+	#A single element should not be counted as a loop
+	def test_loop_single_element(self):
+		list = LinkedList()
+		list.insert('a')
+		self.assertEqual(isLoop(list), None)
 
-    list2.insert('a')
-    list2.insert('b')
-    list2.insert('a')
+	def test_loop_true(self):
+		list = LinkedList()
+		list.insert('d')
+		list.insert('c')
+		list.insert('b')
+		list.insert('a')
+		list.tail.next = list.head
+		self.assertEqual(isLoop(list), 'a')
 
-    def testSum(self):
-    	self.assertEqual(isLoop(self.list1), 'a')
-    	self.assertEqual(isLoop(self.list2), None)
+	def test_loop_false(self):
+		list = LinkedList()
+
+		list.insert('a')
+		list.insert('b')
+		list.insert('a')
+		self.assertEqual(isLoop(list), None)
 
 if __name__ == "__main__":
-    unittest.main()
+	unittest.main()
