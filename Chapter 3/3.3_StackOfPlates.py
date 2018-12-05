@@ -29,6 +29,19 @@ class SetOfStacks:
 			self.stacks.pop()
 		return node
 
+	#Pops from top of stack at index and returns the value. Throws an
+	#exception if the index does not exist as a substack. Note: This does
+	#allow for substacks to potentially not be filled anymore.
+	def popAt(self, index):
+		if index < 1 or index > len(self.stacks):
+			raise ValueError('Invalid Index')
+
+		node = self.stacks[index-1].pop()
+		if(len(self.stacks[index-1]) == 0):
+			self.stacks.remove([])
+
+		return node
+
 class Test(unittest.TestCase):
 
 	#Popping from empty stack should throw exception
@@ -73,6 +86,32 @@ class Test(unittest.TestCase):
 		self.assertEqual(stack.pop(), 3)
 		self.assertEqual(stack.pop(), 2)
 		self.assertEqual(stack.pop(), 1)
+
+	#Should throw an error if trying to pop from non-existent substack
+	def test_popAt_invalid_index(self):
+		stack = SetOfStacks(1)
+		with self.assertRaises(Exception) as context:
+			stack.popAt(0)
+		self.assertTrue('Invalid Index' in str(context.exception))
+		with self.assertRaises(Exception) as context:
+			stack.popAt(5)
+		self.assertTrue('Invalid Index' in str(context.exception))
+
+	#Verify the correct values are popped from a single substack
+	def test_popAt_single_substack(self):
+		stack = SetOfStacks(2)
+		stack.push(1)
+		stack.push(2)
+		self.assertEqual(stack.popAt(1), 2)
+		self.assertEqual(stack.popAt(1), 1)
+
+	#Verify the correct values are popped from multiple substacks
+	def test_popAt_multiple_substacks(self):
+		stack = SetOfStacks(1)
+		stack.push(1)
+		stack.push(2)
+		self.assertEqual(stack.popAt(2), 2)
+		self.assertEqual(stack.popAt(1), 1)
 
 if __name__ == "__main__":
 	unittest.main()
