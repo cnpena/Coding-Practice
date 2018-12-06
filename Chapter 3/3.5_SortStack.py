@@ -5,6 +5,7 @@
 #not copy the elements into any other data structure (such as an array).
 #The stack supports the following operations: push, pop, peek, and isEmpty.
 #Run time: O(n^2), Space: O(n)
+import unittest
 
 class SortStack:
 	def __init__(self):
@@ -34,3 +35,12 @@ class SortStack:
 		#copy elements from stack2 back into self
 		while not stack2.isEmpty():
 			self.push(stack2.pop())
+
+class Test(unittest.TestCase):
+
+	def test_sort_one_item(self):
+
+	def test_sort_multiple_items(self):
+
+if __name__ == "__main__":
+	unittest.main()
