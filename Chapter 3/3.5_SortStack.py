@@ -6,41 +6,34 @@
 #The stack supports the following operations: push, pop, peek, and isEmpty.
 #Run time: O(n^2), Space: O(n)
 import unittest
+from Stack import Stack
 
-class SortStack:
-	def __init__(self):
-		self.items = []
-
-	def isEmpty(self):
-		return self.items == []
-
-	def push(self, item):
-		self.items.append(item)
-
-	def pop(self):
-		return self.items.pop()
-
-	def peek(self):
-		return self.items[len(self.items)-1]
-
-	def sort(self):
-		stack2 = SortStack()
-		while not self.isEmpty():
-			#insert each element in self in sorted order into stack2
-			temp = self.pop()
-			while not stack2.isEmpty and stack2.peek() > temp:
-				self.push(stack2.pop())
-			stack2.push(temp)
-
-		#copy elements from stack2 back into self
-		while not stack2.isEmpty():
-			self.push(stack2.pop())
+def sort(stack):
+	sorted = Stack()
+	while not stack.isEmpty():
+		#insert each element in self in sorted order into sorted
+		temp = stack.pop()
+		while (not sorted.isEmpty()) and sorted.peek() < temp:
+			stack.push(sorted.pop())
+		sorted.push(temp)
+	return sorted
 
 class Test(unittest.TestCase):
 
 	def test_sort_one_item(self):
+		stack = Stack()
+		stack.push(1)
+		self.assertEqual(stack.peek(), 1)
+		sortedStack = sort(stack)
+		self.assertEqual(sortedStack.peek(), 1)
 
 	def test_sort_multiple_items(self):
+		stack = Stack()
+		for i in range(5):
+			stack.push(i)
+		sortedStack = sort(stack)
+		for i in range(5):
+			self.assertEqual(sortedStack.pop(), i)
 
 if __name__ == "__main__":
 	unittest.main()
