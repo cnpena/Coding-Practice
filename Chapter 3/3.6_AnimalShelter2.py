@@ -1,7 +1,10 @@
 #Alternate solution to 3.6 Animal Shelter. This solution separates
 #the animal shelter list into a list of dogs and a list of cats.
 #Prevents from having to iterate through the list when dequeueCat
-#or dequeueDog is called.
+#or dequeueDog is called. Each dog or cat has an order associated
+#with it that allows to easily check which animal should be dequeued 
+#first when dequeueAny() is called
+
 from collections import deque
 import unittest
 
