@@ -32,28 +32,37 @@ def postOrderTraversal(node, list):
 		list.append(node.value)
 	return list
 
-root = Node(2)
-root.left = Node(1)
-root.right = Node(3)
+root = Node(1)
+
+fullTree = Node(2)
+fullTree.left = Node(1)
+fullTree.right = Node(3)
+
+leftChild = Node(2)
+leftChild.left = Node(1)
+
+rightChild = Node(2)
+rightChild.right = Node(3)
+
 
 class Test(unittest.TestCase):
 	def test_inOrder_traversal(self):
-		self.assertEqual(inOrderTraversal(root, []), [1, 2, 3])
+		self.assertEqual(inOrderTraversal(root, []), [1])
+		self.assertEqual(inOrderTraversal(leftChild, []), [1, 2])
+		self.assertEqual(inOrderTraversal(rightChild, []), [2, 3])
+		self.assertEqual(inOrderTraversal(fullTree, []), [1, 2, 3])
 
 	def test_preOrder_traversal(self):
-		self.assertEqual(preOrderTraversal(root, []), [2, 1 , 3])
+		self.assertEqual(preOrderTraversal(root, []), [1])
+		self.assertEqual(preOrderTraversal(leftChild, []), [2, 1])
+		self.assertEqual(preOrderTraversal(rightChild, []), [2, 3])
+		self.assertEqual(preOrderTraversal(fullTree, []), [2, 1 , 3])
 
 	def test_postOrder_traversal(self):
-		self.assertEqual(postOrderTraversal(root, []), [1, 3 , 2])
+		self.assertEqual(postOrderTraversal(root, []), [1])
+		self.assertEqual(postOrderTraversal(leftChild, []), [1, 2])
+		self.assertEqual(postOrderTraversal(rightChild, []), [3, 2])
+		self.assertEqual(postOrderTraversal(fullTree, []), [1, 3 , 2])
 		
 if __name__ == "__main__":
 	unittest.main()
-
-# #1 2 3
-# inOrderTraversal(root)
-
-# #2 1 3
-# preOrderTraversal(root)
-
-# #1 3 2
-# postOrderTraversal(root)
