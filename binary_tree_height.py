@@ -1,3 +1,5 @@
+import unittest
+
 class Node:
     def __init__(self, info): 
         self.info = info  
@@ -58,26 +60,25 @@ def visit(root, current, maxHeight):
         maxHeight = max(current, maxHeight)
         return maxHeight
 
-    
-'''
-class Node:
-      def __init__(self,info): 
-          self.info = info  
-          self.left = None  
-          self.right = None 
-           
+class Test(unittest.TestCase):
+    def test1(self):
+        tree = BinarySearchTree()
+        t = 7
+        arr = [3, 5, 2, 1, 4, 6, 7]
 
-       // this is a node of the tree , which contains info as data, left , right
-'''
+        for i in range(t):
+            tree.create(arr[i])
 
+        self.assertEqual(height(tree.root), 3)
+    def test_single_node(self):
+        tree = BinarySearchTree()
+        t = 1
+        arr = [15]
 
+        for i in range(t):
+            tree.create(arr[i])
 
-tree = BinarySearchTree()
-t = 7
+        self.assertEqual(height(tree.root), 0)
 
-arr = [3, 5, 2, 1, 4, 6, 7]
-
-for i in range(t):
-    tree.create(arr[i])
-
-print(height(tree.root))
+if __name__ == "__main__":
+    unittest.main()
