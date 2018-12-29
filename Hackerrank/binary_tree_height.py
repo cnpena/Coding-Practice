@@ -1,3 +1,6 @@
+#Returns the height of a binary tree, the number of edges between
+#the tree's root and it's furthest leaf.
+
 import unittest
 
 class Node:
@@ -49,7 +52,7 @@ def visit(root, current, maxHeight):
     if root.right:
         maxDepthR = visit(root.right, current + 1, maxHeight)
 
-    # Do da stuff for returning
+    #Determine what value to return
     if(maxDepthL and maxDepthR):
         return max(maxDepthL, maxDepthR)
     elif(maxDepthL):
@@ -61,24 +64,56 @@ def visit(root, current, maxHeight):
         return maxHeight
 
 class Test(unittest.TestCase):
-    def test1(self):
-        tree = BinarySearchTree()
-        t = 7
-        arr = [3, 5, 2, 1, 4, 6, 7]
+    test1 = [1]
+    test2 = [2, 1]
+    test3 = [1, 2]
+    test4 = [2, 1, 3]
+    test7 = [4, 1, 2, 3, 5, 6, 7]
 
-        for i in range(t):
-            tree.create(arr[i])
-
-        self.assertEqual(height(tree.root), 3)
+    #Binary tree with a single node should return height 0
     def test_single_node(self):
         tree = BinarySearchTree()
-        t = 1
-        arr = [15]
 
-        for i in range(t):
-            tree.create(arr[i])
+        for i in range(len(self.test1)):
+            tree.create(self.test1[i])
 
         self.assertEqual(height(tree.root), 0)
+
+    #Binary tree with one root and one left child
+    def test_left_child_only(self):
+        tree = BinarySearchTree()
+
+        for i in range(len(self.test2)):
+            tree.create(self.test2[i])
+
+        self.assertEqual(height(tree.root), 1)
+
+    #Binary tree with one root and one right child
+    def test_right_child_only(self):
+        tree = BinarySearchTree()
+
+        for i in range(len(self.test3)):
+            tree.create(self.test3[i])
+
+        self.assertEqual(height(tree.root), 1)
+
+    #Binary tree with 3 nodes, filled tree
+    def test_full_tree_3_nodes(self):
+        tree = BinarySearchTree()
+
+        for i in range(len(self.test4)):
+            tree.create(self.test4[i])
+
+        self.assertEqual(height(tree.root), 1)
+
+    #Binary tree with 7 nodes, a full tree
+    def test_full_tree(self):
+        tree = BinarySearchTree()
+
+        for i in range(len(self.test7)):
+            tree.create(self.test7[i])
+
+        self.assertEqual(height(tree.root), 3)
 
 if __name__ == "__main__":
     unittest.main()
