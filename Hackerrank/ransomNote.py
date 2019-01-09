@@ -6,7 +6,8 @@
 import unittest
 
 def checkMagazine(magazine, note):
-    #First, put all words from magazine into hash table
+    #First, put all words from magazine into hash table and the # of 
+    #times they appear 
     magazineTable = {}
     for i in magazine:
         if i not in magazineTable:
@@ -14,18 +15,32 @@ def checkMagazine(magazine, note):
         else:
             magazineTable[i] += 1
     
+    #Iterate through the words in the note. If a word does not exist in
+    #the magazine table, immediately return false. Otherwise, remove it from
+    #the table.
     for i in note:
-        if i not in magazineTable:
+        if i in magazineTable:
+            if magazineTable[i] > 1:
+                magazineTable[i] -=1
+            else:
+                magazineTable.pop(i)
+        else:
             return False
     return True
 
 class Test(unittest.TestCase):
 
-    def test_duplicate_words(self):
+    def test_duplicate_words_false(self):
         magazine = ['two', 'times', 'three', 'is', 'not', 'four']
         note = ['two', 'times', 'two', 'is', 'four']
 
         self.assertFalse(checkMagazine(magazine, note))
+
+    def test_duplicate_words_True(self):
+        magazine = ['two', 'times', 'two', 'is', 'not', 'four']
+        note = ['two', 'times', 'two', 'is', 'four']
+
+        self.assertTrue(checkMagazine(magazine, note))
 
     def test_exact_same_words(self):
         magazine = ['two', 'times', 'three', 'is', 'not', 'four']
