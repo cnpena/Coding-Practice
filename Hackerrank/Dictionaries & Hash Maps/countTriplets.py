@@ -35,5 +35,28 @@ class Test(unittest.TestCase):
         arr = [1, 2, 4]
         self.assertEqual(countTriplets(arr, 2), 1)
 
+    def test_repeat_first_value(self):
+        arr = [1, 1, 3, 9]
+        self.assertEqual(countTriplets(arr, 3), 2)
+
+    def test_repeat_second_value(self):
+        arr = [10, 20, 20, 40]
+        self.assertEqual(countTriplets(arr, 2), 2)
+
+    def test_repeat_third_value(self):
+        arr = [10, 30, 90, 90]
+        self.assertEqual(countTriplets(arr, 3), 2)
+
+    def test_repeat_multiple_values(self):
+        arr = [10, 10, 10, 40, 40, 160]
+        self.assertEqual(countTriplets(arr, 4), 6)
+
+    def test_ratio_1(self):
+        arr = [1, 1, 1]
+        self.assertEqual(countTriplets(arr, 1), 1)
+
+    def test_ratio_1_many(self):
+        arr = [1, 1, 1, 1, 1]
+        self.assertEqual(countTriplets(arr, 1), 10)
 if __name__ == "__main__":
     unittest.main()
