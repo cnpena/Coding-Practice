@@ -4,6 +4,7 @@
 #they are sorted alphabetically.
 
 from functools import cmp_to_key
+import unittest
 
 class Player:
     def __init__(self, name, score):
@@ -20,24 +21,28 @@ class Player:
         else:
             return -1
 
+#To facilitate testing
+def asString(arr):
+    players = []
+    for i in arr:
+        players.append([i.name, i.score])
+    return players
 
 class Test(unittest.TestCase):
     def test_no_duplicate_values(self):
-        #
+        players = [Player('A', 1), Player('B', 2), Player('C', 3)]
+        playersSorted = sorted(players, key=cmp_to_key(Player.comparator))
+        self.assertEqual(asString(playersSorted), [['C', 3], ['B', 2], ['A', 1]])
 
-    def test_only_duplicate_values(self):
-        #
+    def test_all_duplicate_values(self):
+        players = [Player('C', 1), Player('B', 1), Player('A', 1)]
+        playersSorted = sorted(players, key=cmp_to_key(Player.comparator))
+        self.assertEqual(asString(playersSorted), [['A', 1], ['B', 1], ['C', 1]])
+
+    def test_duplicate_names(self):
+        players = [Player('A', 1), Player('B', 3), Player('A', 2)]
+        playersSorted = sorted(players, key=cmp_to_key(Player.comparator))
+        self.assertEqual(asString(playersSorted), [['B', 3], ['A', 2], ['A', 1]])
 
 if __name__ == "__main__":
     unittest.main()
-
-# data = [['amy', 100], ['david', 100], ['heraldo', 50], ['aakansha', 75], ['aleksa', 150]]
-# players = []
-# for i in data:
-#     name, score = i[0], i[1]
-#     player = Player(name, score)
-#     players.append(player)
-    
-# players = sorted(players, key=cmp_to_key(Player.comparator))
-# for i in players:
-#     print(i.name, i.score)
