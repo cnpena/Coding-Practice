@@ -29,12 +29,15 @@ def activityNotifications(expenditure, k):
             count +=1
     return count
 
+#Given a sorted array, removes a from the array and inserts b in its proper position. Returns a sorted array.
 def remove_insert(arr, a, b):
     index = bisect.bisect_left(arr, a)
     arr.pop(index)
     bisect.insort_right(arr, b)
     return arr
 
+#Given a sorted array, returns the median value. If odd length, the exact middle value. If even length, 
+#returns the average of the two middle values.
 def median(arr):
     n = len(arr)
     if n % 2 == 1:
@@ -54,6 +57,6 @@ class Test(unittest.TestCase):
     def test_3(self):
         arr = [10, 20, 30, 40, 50]
         self.assertEqual(activityNotifications(arr, 4), 1)
-        
+
 if __name__ == "__main__":
     unittest.main()
