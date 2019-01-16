@@ -16,6 +16,7 @@
 #we make use of Python bisect which allows us to remove and insert the values without having to sort. 
 
 import bisect
+import unittest
 
 def activityNotifications(expenditure, k):
     count = 0
@@ -40,3 +41,19 @@ def median(arr):
         return arr[n//2]
     else:
         return sum(arr[n//2-1:n//2+1])/2.0
+
+class Test(unittest.TestCase):
+    def test_1(self):
+        arr = [2, 3, 4, 2, 3, 6, 8, 4, 5]
+        self.assertEqual(activityNotifications(arr, 5), 2)
+
+    def test_2(self):
+        arr = [1, 2, 3, 4, 4]
+        self.assertEqual(activityNotifications(arr, 4), 0)
+
+    def test_3(self):
+        arr = [10, 20, 30, 40, 50]
+        self.assertEqual(activityNotifications(arr, 4), 1)
+        
+if __name__ == "__main__":
+    unittest.main()
