@@ -4,11 +4,16 @@
 #two given indices. Once all operations have been performed, returns
 #the maximum value in the array.
 
+#To avoid updating every indice and reduce runtime, this solution uses a
+#difference array. For each update, only the left and right index are updated.
+#The left index is incremented by the proper value and the right index is
+#decremented by this value. Then, we are able to use these edges to infer the
+#values between them to find each value in the array and ultimately the maximum.
+
 import unittest
 
 def arrayManipulation(n, queries):
     a = [0] * (n+1)
-    print(a)
 
     for i in range(len(queries)):
         l = queries[i][0]
@@ -16,11 +21,12 @@ def arrayManipulation(n, queries):
         value = queries[i][2]
 
         a[l-1] += value
-        if r <= len(a):
-            a[r] -= value
-        print(a)
+        a[r] -= value
+  
     return findMax(a)
 
+#Iterates through the array, using the previous value to calculate the value at every 
+#index. 
 def findMax(arr):
     maxValue = x = 0
     for i in arr:
