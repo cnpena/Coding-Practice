@@ -34,3 +34,19 @@ def findMax(arr):
         if x > maxValue:
             maxValue = x
     return maxValue
+
+#Tests from Hackerrank
+class Test(unittest.TestCase):
+    def test1(self):
+        arr = [[1, 2, 100], [2, 5, 100], [3, 4, 100]]
+        self.assertEqual(arrayManipulation(5, arr), 200)
+
+    def test2(self):
+        arr = [[1, 5, 3], [4, 8, 7], [6, 9, 1]]
+        self.assertEqual(arrayManipulation(10, arr), 10)
+
+    def test3(self):
+        arr = [[2, 6, 8], [3, 5, 7], [1, 8, 1], [5, 9, 15]]
+        self.assertEqual(arrayManipulation(10, arr), 31)
+if __name__ == "__main__":
+    unittest.main()
