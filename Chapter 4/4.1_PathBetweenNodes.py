@@ -22,8 +22,8 @@ def findPath(node1, node2):
 				queue.add(adjacent)
 				visited.append(adjacent)
 		current = queue.remove()
-	# for v in visited:
-	#  	v.shortestPath = None
+	for v in visited:
+	 	v.shortestPath = None
 	return path
 
 class Queue():
