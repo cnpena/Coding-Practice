@@ -1,6 +1,6 @@
 #Chapter 4: Trees and Graphs
 #4.1 Route Between Nodes, page 109
-#Given a directed graph, determines whether there is a route between them.
+#Given a directed graph, finds the shortest path between two given nodes.
 #Does this by using BFS to search the graph. Starts at node1 and during 
 #traversal, checks if node2 is found. Keeps track of nodes that have already
 #been visited to avoid cycles and repetition. 
