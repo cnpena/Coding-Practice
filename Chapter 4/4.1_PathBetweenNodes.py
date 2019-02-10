@@ -1,6 +1,10 @@
 #Chapter 4: Trees and Graphs
 #4.1 Route Between Nodes, page 109
 #Given a directed graph, determines whether there is a route between them.
+#Does this by using BFS to search the graph. Starts at node1 and during 
+#traversal, checks if node2 is found. Keeps track of nodes that have already
+#been visited to avoid cycles and repetition. 
+
 import unittest
 from Node import Node
 
@@ -45,22 +49,18 @@ def str_for(path):
 	return ''.join([str(n.value) for n in path])
 	
 class Test(unittest.TestCase):
-	def test_find_route(self):
-		node_j = Node('J')
-		node_i = Node('I')
-		node_h = Node('H')
-		node_d = Node('D')
-		node_f = Node('F', [node_i])
-		node_b = Node('B', [node_j])
-		node_g = Node('G', [node_d, node_h])
-		node_c = Node('C', [node_g])
-		node_a = Node('A', [node_b, node_c, node_d])
-		node_e = Node('E', [node_f, node_a])
-		node_d.add_edge(node_a)
-		self.assertEqual(str_for(findPath(node_a, node_i)), 'None')
-		self.assertEqual(str_for(findPath(node_a, node_j)), 'ABJ')
-		node_h.add_edge(node_i)
-		self.assertEqual(str_for(findPath(node_a, node_i)), 'ACGHI')
+	def test_find_path(self):
+		f = Node('F')
+		e = Node('E')
+		d = Node('D', [e])
+		c = Node('C', [e])
+		b = Node('B', [d, c])
+		a = Node('A', [b, c])
+		self.assertEqual(str_for(findPath(a, f)), 'None')
+		self.assertEqual(str_for(findPath(a, c)), 'AC')
+		self.assertEqual(str_for(findPath(a, d)), 'ABD')
+		a.add_edge(e)
+		self.assertEqual(str_for(findPath(a, e)), 'AE')
 
 if __name__ == "__main__":
 	unittest.main()
