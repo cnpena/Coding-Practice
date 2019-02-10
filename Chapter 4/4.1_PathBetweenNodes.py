@@ -42,7 +42,7 @@ class Queue():
 
 def str_for(path):
 	if not path: return str(path)
-	return ''.join([str(n) for n in path])
+	return ''.join([str(n.value) for n in path])
 	
 class Test(unittest.TestCase):
 	def test_find_route(self):
