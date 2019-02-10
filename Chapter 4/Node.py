@@ -1,8 +1,9 @@
 class Node:
-	def __init__(self, value, adjList):
+	def __init__(self, value, adjList=None):
 		self.value = value
-		self.adjList = adjList
-
+		self.adjList = adjList or []
+		self.shortestPath = None
+		
 	def add_edge(self, node):
-    	self.adjList += [node]
+		self.adjList += [node]
 		
