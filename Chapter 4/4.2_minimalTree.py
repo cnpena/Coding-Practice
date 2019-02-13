@@ -16,20 +16,17 @@
 #	Insert into the right subtree the right subarray elements.
 #	Recurse
 
+import unittest
+from binaryTree import Node
+
 def createMinimalBST(array, start, end):
 	if (end < start):
 		return None
 	mid = (start + end) // 2
-	node = TreeNode(array[mid])
+	node = Node(array[mid])
 	node.left = createMinimalBST(array, start, mid-1)
 	node.right = createMinimalBST(array, mid+1, end)
 	return node
-
-class TreeNode:
-	def __init__(self, value, left=None, right=None):
-		self.value = value
-		self.left = left
-		self.right = right
 
 array = [1, 2, 3, 4, 5]
 print(createMinimalBST(array, 0, len(array)-1).value)
