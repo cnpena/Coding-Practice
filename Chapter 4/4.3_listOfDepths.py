@@ -4,8 +4,11 @@
 
 from binaryTree import Node as TreeNode
 
-def createLevelLinkedList(root, lists, level):
-	if not root:
+lists = []
+def createLevelLinkedList(root, level):
+	if root is None:
+		print('finished??')
+		print(level)
 		return
 
 	list = None
@@ -20,15 +23,20 @@ def createLevelLinkedList(root, lists, level):
 	createLevelLinkedList(root.left, lists, level+1)
 	createLevelLinkedList(root.right, lists, level+1)
 
-	return lists
-
 ten = TreeNode(10)
+
 eight = TreeNode(8)
+eight.left = TreeNode(6)
+eight.right = TreeNode(9)
+
 twelve = TreeNode(12)
+
+eight.left
 ten.left = eight
 ten.right = twelve
 
-sol = createLevelLinkedList(ten, [], 0)
+
+sol = createLevelLinkedList(ten, 0)
 for i in sol:
 	for j in i:
 		print(j.value)
