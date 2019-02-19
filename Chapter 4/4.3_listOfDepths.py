@@ -14,14 +14,14 @@ def createLevelLinkedList(root, level):
 	list = None
 	if len(lists) == level:
 		list = []
+		list.append(root)
 		lists.append([])
 	else:
 		list = lists[level]
+		list.append(root)
 
-	list.append(root)
-
-	createLevelLinkedList(root.left, lists, level+1)
-	createLevelLinkedList(root.right, lists, level+1)
+	createLevelLinkedList(root.left, level+1)
+	createLevelLinkedList(root.right, level+1)
 
 ten = TreeNode(10)
 
@@ -37,9 +37,8 @@ ten.right = twelve
 
 
 sol = createLevelLinkedList(ten, 0)
-for i in sol:
-	for j in i:
-		print(j.value)
+for i in lists:
+	print(i)
 
 
 
