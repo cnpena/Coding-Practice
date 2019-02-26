@@ -21,3 +21,9 @@ def merge_the_tools(string, k):
                 output +=char
         print(output)
         string = string[k:] # Move to next k characters
+
+string1 = 'ABCDEFGHI'
+string2 = 'AABCAAADA'
+k = 3
+print(merge_the_tools(string1, k))
+print(merge_the_tools(string2, k))
