@@ -1,3 +1,7 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.Scanner;
+
 /* IP Address Regex
 	Class IPAddressRegex uses a regular expression to
 	validate an IP address based on the following definition:
@@ -17,10 +21,6 @@
 			200-249 OR
 			250-255
 */
-	
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.Scanner;
 
 class IPAddressRegex {
 
