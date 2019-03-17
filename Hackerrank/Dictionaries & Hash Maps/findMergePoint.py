@@ -4,7 +4,7 @@
 # This code on it's own doesn't work but has been tested on Hackerrank.
 
 
-# Method 1: Hash table
+# Hash table
 # Works by using a hash table to store all nodes of list1.
 # Then, traverses through list2, checking each node to see if it is in the table.
 # Returns when it has found the first node that matches.
