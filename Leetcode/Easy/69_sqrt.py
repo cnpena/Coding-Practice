@@ -1,6 +1,7 @@
  # 69. Sqrt(x)
  # Given a value x, find the floor of the square root of x. 
  # No driver code but has been tested on Leetcode.
+ # Reference: https://www.geeksforgeeks.org/square-root-of-an-integer/
  
  # Tries all numbers from 1 to x. Once it comes upon the first value squared
     # that is larger than x, the previous value must be the floor of the square
