@@ -1,3 +1,6 @@
+# Given an array of size n, find the majority element. You may assume that the array is non-empty 
+# and the majority element always exist in the array.
+# Reference: https://www.geeksforgeeks.org/majority-element/
 from collections import defaultdict
 class Solution(object):
     # Really a problem of keeping count of an unknown number of elements. Can keep track of count
@@ -36,3 +39,4 @@ class Solution(object):
                 if count > len(nums)//2:
                     return i
         return None
+        
