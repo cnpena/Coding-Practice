@@ -39,4 +39,26 @@ class Solution(object):
                 if count > len(nums)//2:
                     return i
         return None
+
+    # Uses the majority voting algorithm to solve this problem. Start by arbitrarily assigning
+    # the first element to be the potential majority element. Each iteration, add 1 to count if 
+    # we come accross another instance of this value. For every other value, minus 1 to count. 
+    # If this value is not the actual majority, the count will reduce to 0 at some point and 
+    # a new potential majority will be chosen. Continues until the end of the list where potential
+    # majority variable will contain the value of the potential majority. When it is not guaranteed
+    # that there is a majority element, simply need to iterate once more and count the occurences of
+    # majority element. O(n) time, O(1) time
+    
+    def majorityElement(self, nums):
+        count = 0
+        potentialMajority = None
+        
+        for value in nums:
+            if count == 0:
+                potentialMajority = value
+            if value == potentialMajority:
+                count +=1
+            else:
+                count -=1
+        return potentialMajority
         
