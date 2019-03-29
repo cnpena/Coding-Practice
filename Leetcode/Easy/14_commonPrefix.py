@@ -1,3 +1,7 @@
+# 14. Longest Common Prefix
+# Finds the longest common prefix string amongst an array of strings.
+# If there is no common prefix, returns an empty string.
+
 class Solution(object):
     # Works by iterating through the characters in the first string in the list.
     # For each character, checks all other strings in the list to see if the
