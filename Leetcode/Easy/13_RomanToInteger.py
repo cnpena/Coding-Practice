@@ -1,3 +1,5 @@
+# 13. Roman to Integer
+# Given a roman numeral, convert it to an integer
 class Solution(object):
     # Makes use of a separate function to return the value of each numeral given.
     # Iterates through the given numerals, getting the value for each. For each
