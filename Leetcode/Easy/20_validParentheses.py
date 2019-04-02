@@ -24,10 +24,11 @@ class Solution(object):
                     return False
         return len(stack) == 0
     
-    # Uses string manipulation
-    # def isValid(self, s):
-    #     while '()' in s or '{}' in s or '[]' in s:
-    #         s = s.replace('()', '')
-    #         s = s.replace('{}', '')
-    #         s = s.replace('[]', '')
-    #     return s == ''
+    # Uses string manipulation. Goes through and replaces all valid pairs. Returns true only
+    # if the empty string is left at the end
+    def isValid2(self, s):
+        while '()' in s or '{}' in s or '[]' in s:
+            s = s.replace('()', '')
+            s = s.replace('{}', '')
+            s = s.replace('[]', '')
+        return s == ''
