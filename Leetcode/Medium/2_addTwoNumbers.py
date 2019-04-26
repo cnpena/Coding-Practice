@@ -1,8 +1,11 @@
 # 2. Add Two Numbers
-# 
+# You are given two non-empty linked lists representing two non-negative integers. 
+# The digits are stored in reverse order and each of their nodes contain a single digit. 
+# Add the two numbers and return it as a linked list.
 
 class Solution(object):
-    # Works by iterating through both lists, adding the values. Computes and adds the carry value as we iterate. 
+    # Works by iterating through both lists, adding the values. 
+    # Computes and adds the carry value as we iterate. 
     def addTwoNumbers(self, l1, l2):
         returnList = ListNode(0)
         current = returnList
